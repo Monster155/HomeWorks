@@ -1,4 +1,6 @@
+import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -9,9 +11,11 @@ public class Output extends Writer {
     private FileWriter fileWriter;
     private ObjectMapper mapper;
 
-    public Output(FileWriter fileWriter) {
+    public Output(FileWriter fileWriter, String typeOfFile) {
         this.fileWriter = fileWriter;
-        mapper = new ObjectMapper();
+        if (typeOfFile.toLowerCase().equals("yaml"))
+            mapper = new ObjectMapper(new YAMLFactory());
+        else mapper = new ObjectMapper(new JsonFactory());
     }
 
     public void writeStudent(Student student) throws IOException {
