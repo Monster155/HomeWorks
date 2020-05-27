@@ -13,6 +13,11 @@ public class Downloader {
         URLConnection connection = url.openConnection();
 //        String type = connection.getContentType();
         InputStream inputStream = connection.getInputStream();
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
 //        type = type.substring(type.lastIndexOf("/") + 1);
 //        int k = type.indexOf(";");
